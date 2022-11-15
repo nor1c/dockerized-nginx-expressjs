@@ -1,0 +1,29 @@
+#
+# * This is init nginx configuration file
+# We run this config when certbot in not yet installed to the domain
+#
+server {
+  listen 80;
+
+  server_name upy.moe;
+  
+  root /var/www/html;
+  index index.html;
+}
+
+#
+# === Config for API app ===
+#
+server {
+  listen 80;
+
+  server_name api.upy.moe;
+  
+  location / {
+    proxy_pass http://0.0.0.0:2021;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+  }
+}
