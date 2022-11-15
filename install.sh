@@ -8,7 +8,7 @@ docker container rm dz_certbot
 
 # we can't install all the service at once because we need app running before installing the certificate (certbot)
 echo "running nginx & app service.."
-mv docker/nginx/configurations/default.conf.init docker/nginx/configurations/default.conf
+mv docker/nginx/configurations/default.init.conf docker/nginx/configurations/default.conf
 docker-compose up -d
 
 # wait until the process done
@@ -23,8 +23,8 @@ echo "certbot logs:"
 docker logs dz_certbot
 
 echo "configuring config file.."
-mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.conf.init
-mv docker/nginx/configurations/default.conf.ssl docker/nginx/configurations/default.conf
+mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.init.conf
+mv docker/nginx/configurations/default.ssl.conf docker/nginx/configurations/default.conf
 echo "restarting nginx.."
 docker-compose restart
-mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.conf.ssl
+mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.ssl.conf
