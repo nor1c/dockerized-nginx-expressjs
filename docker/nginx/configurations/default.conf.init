@@ -3,7 +3,7 @@
 # We run this config when certbot in not yet installed to the domain
 #
 server {
-  listen 80;
+  listen 80 default_server;
 
   server_name upy.moe;
   

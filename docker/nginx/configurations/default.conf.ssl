@@ -7,12 +7,12 @@ server {
     return 301 https://$host$request_uri;
   }
 
-  listen 80;
+  listen 80 default_server;
   server_name upy.moe www.upy.moe;
   return 404;
 }
 server {
-  listen 443 ssl http2;
+  listen 443 ssl;
 
   server_name upy.moe;
 
@@ -33,12 +33,16 @@ upstream apiLBServers {
   # server x.x.x.x:2022;
 }
 server {
+  if ($host = api.upy.moe) {
+    return 301 https://$host$request_uri;
+  }
+
   listen 80;
   server_name api.upy.moe;
-  return 301 https://$host$request_uri;
+  return 404;
 }
 server {
-  listen 443 ssl http2;
+  listen 443 ssl;
 
   server_name api.upy.moe www.api.upy.moe;
 
