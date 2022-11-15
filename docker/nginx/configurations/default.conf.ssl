@@ -1,5 +1,6 @@
 #
 # === Default configuration ===
+# https://upy.moe
 #
 server {
   listen 80;
@@ -25,6 +26,7 @@ server {
 
 # #
 # # === Config for API app ===
+# # https://api.upy.moe
 # #
 # API Load Balancer
 # upstream apiLBServers {

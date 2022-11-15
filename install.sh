@@ -18,7 +18,7 @@ sleep 30
 echo "installing certbot SSL certificate.."
 docker-compose -f certbot.docker-compose.yml up -d
 sleep 30
-echo "running certbot logs:"
+echo "certbot logs:"
 docker logs dz_certbot
 
 echo "configuring config file.."
