@@ -1,0 +1,22 @@
+version: '3.9'
+
+services:
+  nginx:
+    container_name: gixpress_web_server
+    image: nginx:latest
+    ports:
+      - 80:80
+    volumes:
+      - ./docker/nginx/html:/var/www/html
+      - ./docker/nginx/configurations/default.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - api
+
+  api:
+    container_name: gixpress_app
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    ports:
+      - 2021:2021
+    
