@@ -11,18 +11,21 @@ services:
     volumes:
       - ./docker/nginx/html:/var/www/html
       - ./docker/nginx/configurations/default.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./docker/certbot/conf:/etc/letsencrypt
+      - ./docker/certbot/conf:/etc/letsencrypt:ro
       - ./docker/certbot/www:/var/www/certbot
-    depends_on:
-      - api
 
   certbot:
     image: certbot/certbot
     container_name: certbot
+    command: >-
+             certonly --reinstall --webroot --webroot-path=/var/www/certbot
+             --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email
+             -d upy.moe
     volumes: 
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email ahmad.uji1902@gmail.com -d upy.moe www.upy.moe --agree-tos
+    depends_on:
+      - nginx
 
   api:
     container_name: gixpress_app
@@ -31,4 +34,3 @@ services:
       dockerfile: ./docker/api/Dockerfile
     ports:
       - 2021:2021
-    
