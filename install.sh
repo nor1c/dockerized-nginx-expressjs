@@ -27,4 +27,5 @@ mv docker/nginx/configurations/default.conf.ssl docker/nginx/configurations/defa
 echo "restarting nginx.."
 docker-compose restart
 mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.conf.ssl
-mv docker/nginx/configurations/default.init docker/nginx/configurations/default.conf
+ls docker/nginx/configurations
+mv docker/nginx/configurations/default.conf.init docker/nginx/configurations/default.conf
