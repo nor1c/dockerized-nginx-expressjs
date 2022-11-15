@@ -1,19 +1,20 @@
 http {
   server_tokens off;
   charset utf-8;
-  
+
   #
   # * This is init nginx configuration file
   # We run this config when certbot in not yet installed to the domain
   #
-  # server {
-  #   listen 80 default_server;
-  # 
-  #   server_name upy.moe;
-  # 
-  #   root /var/www/html;
-  #   index index.html;
-  # }
+  server {
+    listen 80 default_server;
+    listen [::]:80 default_server;
+  
+    server_name upy.moe;
+  
+    root /var/www/html;
+    index index.html;
+  }
 
   #
   # === Config for API app ===
@@ -24,6 +25,7 @@ http {
   }
   server {
     listen 80;
+    listen [::]:80;
 
     server_name api.upy.moe;
     
