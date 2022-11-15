@@ -20,7 +20,7 @@ services:
     command: >-
              certonly --reinstall --webroot --webroot-path=/var/www/certbot
              --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email
-             -d api.upy.moe
+             -d upy.moe
     volumes: 
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
