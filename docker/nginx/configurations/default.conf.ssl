@@ -26,8 +26,8 @@ server {
 #
 # === Config for API app ===
 # https://api.upy.moe
+# API Load Balancer
 #
-API Load Balancer
 upstream apiLBServers {
   server localhost:2021;
   # server x.x.x.x:2022;
