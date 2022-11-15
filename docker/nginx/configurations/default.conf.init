@@ -2,14 +2,14 @@
 # * This is init nginx configuration file
 # We run this config when certbot in not yet installed to the domain
 #
-server {
-  listen 80 default_server;
-
-  server_name upy.moe;
-
-  root /var/www/html;
-  index index.html;
-}
+# server {
+#   listen 80 default_server;
+# 
+#   server_name upy.moe;
+# 
+#   root /var/www/html;
+#   index index.html;
+# }
 
 #
 # === Config for API app ===

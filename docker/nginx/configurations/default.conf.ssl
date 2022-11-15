@@ -2,26 +2,26 @@
 # === Default configuration ===
 # https://upy.moe
 #
-server {
-  if ($host = upy.moe) {
-    return 301 https://$host$request_uri;
-  }
+# server {
+#   if ($host = upy.moe) {
+#     return 301 https://$host$request_uri;
+#   }
 
-  listen 80 default_server;
-  server_name upy.moe www.upy.moe;
-  return 404;
-}
-server {
-  listen 443 ssl;
+#   listen 80 default_server;
+#   server_name upy.moe www.upy.moe;
+#   return 404;
+# }
+# server {
+#   listen 443 ssl;
 
-  server_name upy.moe www.upy.moe;
+#   server_name upy.moe www.upy.moe;
 
-  ssl_certificate     /etc/letsencrypt/live/upy.moe/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/upy.moe/privkey.pem;
+#   ssl_certificate     /etc/letsencrypt/live/upy.moe/fullchain.pem;
+#   ssl_certificate_key /etc/letsencrypt/live/upy.moe/privkey.pem;
 
-  root /var/www/html;
-  index index.html;
-}
+#   root /var/www/html;
+#   index index.html;
+# }
 
 #
 # === Config for API app ===
