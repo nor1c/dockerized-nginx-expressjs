@@ -2,6 +2,9 @@
 echo "clearing previous cache.."
 rm -rf docker/certbot/etc/*
 rm -rf docker/certbot/var/*
+docker-compose down
+docker rmi dockerized-nginx-expressjs-api
+docker container rm dz_certbot
 
 # we can't install all the service at once because we need app running before installing the certificate (certbot)
 echo "running nginx & app service.."
