@@ -18,7 +18,7 @@ echo "installing certbot SSL certificate.."
 docker-compose -f certbot.docker-compose.yml up -d
 sleep 5
 echo "running certbot logs:"
-docker logs certbot
+docker logs dz_certbot
 
 echo "configuring config file.."
 mv docker/nginx/configurations/default.conf.ssl docker/nginx/configurations/default.conf
