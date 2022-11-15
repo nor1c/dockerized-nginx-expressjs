@@ -2,21 +2,19 @@ version: '3.9'
 
 services:
   api:
-    container_name: api
+    container_name: dz_api
     build:
       context: .
       dockerfile: ./docker/api/Dockerfile
     ports:
       - 2021:2021
-    networks:
-      - app-network
 
   nginx:
     image: nginx:latest
-    container_name: nginx
+    container_name: dz_nginx
     ports:
       - 80:80
-      # - 443:443
+      - 443:443
     restart: always
     volumes:
       - ./docker/nginx/html:/var/www/html
@@ -25,20 +23,3 @@ services:
       - ./docker/certbot/var:/var/lib/letsencrypt
     depends_on:
       - api
-    networks:
-      - app-network
-
-  certbot:
-    image: certbot/certbot
-    container_name: certbot
-    volumes: 
-      - ./docker/nginx/html:/var/www/html
-      - ./docker/certbot/etc:/etc/letsencrypt
-      - ./docker/certbot/var:/var/lib/letsencrypt
-    depends_on:
-      - nginx
-    command: certonly --webroot --webroot-path=/var/www/html --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email --staging -d upy.moe  -d www.upy.moe 
-
-networks:
-  app-network:
-    driver: bridge

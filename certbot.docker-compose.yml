@@ -1,0 +1,11 @@
+version: '3.9'
+
+services:
+  certbot:
+    image: certbot/certbot
+    container_name: dz_certbot
+    volumes: 
+      - ./docker/nginx/html:/var/www/html
+      - ./docker/certbot/etc:/etc/letsencrypt
+      - ./docker/certbot/var:/var/lib/letsencrypt
+    command: certonly --webroot --webroot-path=/var/www/html --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email --staging -d upy.moe  -d www.upy.moe
