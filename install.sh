@@ -10,21 +10,21 @@ docker container rm dz_certbot
 echo "running nginx & app service.."
 docker-compose up -d
 
-# # wait until the process done
-# echo "waiting for compose finished.."
-# sleep 30
+# wait until the process done
+echo "waiting for compose finished.."
+sleep 30
 
-# # run certbot
-# echo "installing certbot SSL certificate.."
-# docker-compose -f certbot.docker-compose.yml up -d
-# sleep 30
-# echo "certbot logs:"
-# docker logs dz_certbot
+# run certbot
+echo "installing certbot SSL certificate.."
+docker-compose -f certbot.docker-compose.yml up -d
+sleep 30
+echo "certbot logs:"
+docker logs dz_certbot
 
-# echo "configuring config file.."
-# mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.init.conf
-# mv docker/nginx/configurations/default.ssl.conf docker/nginx/configurations/default.conf
-# echo "restarting nginx.."
-# docker-compose restart
-# mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.ssl.conf
-# mv docker/nginx/configurations/default.init.conf docker/nginx/configurations/default.conf
+echo "configuring config file.."
+mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.init.conf
+mv docker/nginx/configurations/default.ssl.conf docker/nginx/configurations/default.conf
+echo "restarting nginx.."
+docker-compose restart
+mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.ssl.conf
+mv docker/nginx/configurations/default.init.conf docker/nginx/configurations/default.conf
