@@ -1,7 +1,6 @@
 #!/usr/bin/sh
 echo "clearing previous cache.."
-rm -rf docker/certbot/conf/*
-rm -rf docker/certbot/var/*
+rm -rf docker/certbot/*
 docker-compose down
 docker rmi dockerized-nginx-expressjs-api
 docker container rm dz_certbot
@@ -28,3 +27,6 @@ echo "restarting nginx.."
 docker-compose restart
 mv docker/nginx/nginx.conf docker/nginx/nginx.ssl.conf
 mv docker/nginx/nginx.init.conf docker/nginx/nginx.conf
+
+echo "nginx conf:"
+docker exec -it dz_nginx cat /etc/nginx/nginx.conf

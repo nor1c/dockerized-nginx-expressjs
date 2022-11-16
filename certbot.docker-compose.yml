@@ -8,4 +8,4 @@ services:
       - ./docker/nginx/html:/var/www/html
       - ./docker/certbot/conf:/etc/letsencrypt
       - ./docker/certbot/www:/var/www/certbot
-    command: certonly --webroot --webroot-path=/var/www/certbot --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email --staging -d domain.com -d www.domain.com -d api.domain.com -d www.api.domain.com
+    command: certonly --webroot --webroot-path=/var/www/certbot --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email --staging -d upy.moe -d www.upy.moe -d api.upy.moe -d www.api.upy.moe
