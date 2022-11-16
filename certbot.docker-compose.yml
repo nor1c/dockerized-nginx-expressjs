@@ -8,5 +8,5 @@ services:
       - ./docker/nginx/html:/var/www/html
       - ./docker/certbot/conf:/etc/letsencrypt/:rw
       - ./docker/certbot/www:/var/www/certbot/:rw
-    command: certonly --webroot --webroot-path /var/www/certbot/ -d upy.moe -d api.upy.moe
+    command: certonly --webroot --webroot-path /var/www/certbot/ --force-renewal --email ahmad.uji1902@gmail.com -d upy.moe -d api.upy.moe --agree-tos
     # certonly --webroot -w /var/www/certbot --force-renewal --email ahmad.uji1902@gmail.com -d upy.moe -d www.upy.moe -d api.upy.moe -d www.api.upy.moe --agree-tos
