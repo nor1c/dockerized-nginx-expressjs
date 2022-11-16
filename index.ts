@@ -3,7 +3,7 @@ import express from 'express'
 const app = express()
 
 app.get('/', (_, res) => {
-  res.send('Sup bitch!')
+  res.send('API working!')
 })
 
 app.listen(2021, '0.0.0.0', () => {
