@@ -22,9 +22,9 @@ docker-compose up -d
 # docker logs dz_certbot
 
 # echo "configuring config file.."
-# mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.init.conf
-# mv docker/nginx/configurations/default.ssl.conf docker/nginx/configurations/default.conf
+# mv docker/nginx/nginx.conf docker/nginx/nginx.init.conf
+# mv docker/nginx/nginx.ssl.conf docker/nginx/nginx.conf
 # echo "restarting nginx.."
 # docker-compose restart
-# mv docker/nginx/configurations/default.conf docker/nginx/configurations/default.ssl.conf
-# mv docker/nginx/configurations/default.init.conf docker/nginx/configurations/default.conf
+# mv docker/nginx/nginx.conf docker/nginx/nginx.ssl.conf
+# mv docker/nginx/nginx.init.conf docker/nginx/nginx.conf
