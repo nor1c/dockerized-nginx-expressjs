@@ -1,6 +1,6 @@
 #!/usr/bin/sh
 echo "clearing previous cache.."
-rm -rf docker/certbot/etc/*
+rm -rf docker/certbot/conf/*
 rm -rf docker/certbot/var/*
 docker-compose down
 docker rmi dockerized-nginx-expressjs-api
