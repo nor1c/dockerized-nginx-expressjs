@@ -22,12 +22,14 @@ echo "certbot logs:"
 docker logs dz_certbot
 
 echo "configuring config file.."
-mv docker/nginx/nginx.conf docker/nginx/nginx.init.conf
-mv docker/nginx/nginx.ssl.conf docker/nginx/nginx.conf
+# mv docker/nginx/nginx.conf docker/nginx/nginx.init.conf
+# mv docker/nginx/nginx.ssl.conf docker/nginx/nginx.conf
 echo "restarting nginx.."
+docker exec -it dz_nginx mv /etc/nginx/nginx.conf /etc/nginx/nginx.init.conf
+docker exec -it dz_nginx mv /etc/nginx/nginx.ssl.conf /etc/nginx/nginx.conf
 docker exec -it dz_nginx nginx -s reload
-mv docker/nginx/nginx.conf docker/nginx/nginx.ssl.conf
-mv docker/nginx/nginx.init.conf docker/nginx/nginx.conf
+# mv docker/nginx/nginx.conf docker/nginx/nginx.ssl.conf
+# mv docker/nginx/nginx.init.conf docker/nginx/nginx.conf
 
 echo "nginx conf:"
 docker exec -it dz_nginx cat /etc/nginx/nginx.conf

@@ -23,6 +23,7 @@ services:
     volumes:
       - ./docker/nginx/html:/var/www/html
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./docker/nginx/nginx.ssl.conf:/etc/nginx/nginx.ssl.conf
       - ./docker/certbot/conf:/etc/letsencrypt/:ro
       - ./docker/certbot/www:/var/www/certbot/:ro
     depends_on:
