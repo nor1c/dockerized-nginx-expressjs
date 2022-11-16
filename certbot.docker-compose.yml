@@ -6,6 +6,6 @@ services:
     container_name: dz_certbot
     volumes: 
       - ./docker/nginx/html:/var/www/html
-      - ./docker/certbot/conf:/etc/letsencrypt
-      - ./docker/certbot/www:/var/www/certbot
-    command: certonly --webroot -w /var/www/certbot --force-renewal --email ahmad.uji1902@gmail.com -d upy.moe -d www.upy.moe -d api.upy.moe -d www.api.upy.moe --agree-tos
+      - ./docker/certbot/conf:/etc/letsencrypt/:rw
+      - ./docker/certbot/www:/var/www/certbot/:rw
+    command: certbot certonly --webroot --webroot-path /var/www/certbot/ -d upy.moe -d api.upy.moe
