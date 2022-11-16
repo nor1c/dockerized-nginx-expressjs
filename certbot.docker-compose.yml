@@ -8,4 +8,5 @@ services:
       - ./docker/nginx/html:/var/www/html
       - ./docker/certbot/etc:/etc/letsencrypt
       - ./docker/certbot/var:/var/lib/letsencrypt
-    command: certonly --webroot --webroot-path=/var/lib/letsencrypt --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email --staging -d upy.moe -d www.upy.moe -d api.upy.moe -d www.api.upy.moe
+    command: certonly --webroot --webroot-path=/var/lib/letsencrypt --email ahmad.uji1902@gmail.com --agree-tos --no-eff-email --staging -d upy.moe -d www.upy.moe 
+    # -d api.upy.moe -d www.api.upy.moe
