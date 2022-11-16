@@ -42,5 +42,5 @@ services:
 
 networks:
   default:
-    external:
-      name: dz-network
+    name: dz-network
+    external: true
