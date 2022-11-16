@@ -4,6 +4,7 @@ rm -rf docker/certbot/*
 docker-compose down
 docker rmi dockerized-nginx-expressjs-api
 docker container rm dz_certbot
+docker network create dz-network
 
 # we can't install all the service at once because we need app running before installing the certificate (certbot)
 echo "running nginx & app service.."
