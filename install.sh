@@ -20,15 +20,15 @@ echo "docker exec dz_nginx ls -la /etc/letsencrypt/live:"
 docker exec dz_nginx ls -la /etc/letsencrypt/live
 
 echo "docker-compose up --force-recreate --no-deps dz_certbot:"
-docker-compose up --force-recreate --no-deps dz_certbot
+docker-compose up --force-recreate --no-deps cerbot
 
-docker-compose stop dz_nginx
+docker-compose stop nginx
 sudo openssl dhparam -out docker/nginx/html/dhparam/dhparam-2048.pem 2048
 
 mv docker/nginx/nginx.conf docker/nginx/nginx.conf.init
 mv docker/nginx/nginx.conf.ssl docker/nginx/nginx.conf
 
-docker-compose up -d --force-recreate --no-deps dz_nginx
+docker-compose up -d --force-recreate --no-deps nginx
 docker-compose ps
 
 mv docker/nginx/nginx.conf docker/nginx/nginx.conf.ssl
