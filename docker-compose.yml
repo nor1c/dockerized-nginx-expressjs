@@ -39,7 +39,7 @@ services:
       - ./docker/certbot/conf:/etc/letsencrypt/:rw
       - ./docker/certbot/www:/var/www/certbot/:rw
     depends_on:
-      - dz_nginx
+      - nginx
     command: certonly --webroot --webroot-path=/var/www/html/ --force-renewal --email ahmad.uji1902@gmail.com --no-eff-email -d upy.moe -d api.upy.moe --agree-tos
 
 volumes:
