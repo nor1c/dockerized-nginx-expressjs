@@ -6,30 +6,30 @@ docker rmi dockerized-nginx-expressjs-api
 docker container rm dz_certbot
 docker network create dz-network
 
-# we can't install all the service at once because we need app running before installing the certificate (certbot)
-echo "running nginx & app service.."
 docker-compose up -d
 
-# wait until the process done
-echo "waiting for compose finished.."
-sleep 30
+sleep 5
 
-# run certbot
-echo "installing certbot SSL certificate.."
-docker-compose -f certbot.docker-compose.yml up -d
-sleep 20
-echo "certbot logs:"
+echo "docker-compose ps:"
+docker-compose ps
+
+echo "docker logs dz_certbot:"
 docker logs dz_certbot
 
-echo "configuring config file.."
-# mv docker/nginx/nginx.conf docker/nginx/nginx.init.conf
-# mv docker/nginx/nginx.ssl.conf docker/nginx/nginx.conf
-echo "restarting nginx.."
-docker exec -it dz_nginx mv /etc/nginx/nginx.conf /etc/nginx/nginx.init.conf
-docker exec -it dz_nginx mv /etc/nginx/nginx.ssl.conf /etc/nginx/nginx.conf
-docker exec -it dz_nginx nginx -s reload
-# mv docker/nginx/nginx.conf docker/nginx/nginx.ssl.conf
-# mv docker/nginx/nginx.init.conf docker/nginx/nginx.conf
+echo "docker exec dz_nginx ls -la /etc/letsencrypt/live:"
+docker exec dz_nginx ls -la /etc/letsencrypt/live
 
-echo "nginx conf:"
-docker exec -it dz_nginx cat /etc/nginx/nginx.conf
+echo "docker-compose up --force-recreate --no-deps dz_certbot:"
+docker-compose up --force-recreate --no-deps dz_certbot
+
+docker-compose stop dz_nginx
+sudo openssl dhparam -out docker/nginx/html/dhparam/dhparam-2048.pem 2048
+
+mv docker/nginx/nginx.conf docker/nginx/nginx.conf.init
+mv docker/nginx/nginx.conf.ssl docker/nginx/nginx.conf
+
+docker-compose up -d --force-recreate --no-deps dz_nginx
+docker-compose ps
+
+mv docker/nginx/nginx.conf docker/nginx/nginx.conf.ssl
+mv docker/nginx/nginx.conf.init docker/nginx/nginx.conf
