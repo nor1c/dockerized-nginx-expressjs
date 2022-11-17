@@ -47,7 +47,7 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ~/upy/dockerized-nginx-expressjs/docker/html/
+      device: ./docker/html/
       o: bind
 
 networks:
