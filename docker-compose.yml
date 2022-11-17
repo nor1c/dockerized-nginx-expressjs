@@ -21,7 +21,7 @@ services:
       - 443:443
     restart: unless-stopped
     volumes:
-      - web-root:/var/www/html
+      - ./docker/nginx/html:/var/www/html
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
       - ./docker/nginx/nginx.ssl.conf:/etc/nginx/nginx.ssl.conf
       - ./docker/certbot/conf:/etc/letsencrypt/:ro
@@ -35,20 +35,12 @@ services:
     image: certbot/certbot
     container_name: dz_certbot
     volumes: 
-      - web-root:/var/www/html
+      - ./docker/nginx/html:/var/www/html
       - ./docker/certbot/conf:/etc/letsencrypt/:rw
       - ./docker/certbot/www:/var/www/certbot/:rw
     depends_on:
       - nginx
     command: certonly --webroot --webroot-path=/var/www/html/ --force-renewal --email ahmad.uji1902@gmail.com --no-eff-email -d upy.moe -d api.upy.moe --agree-tos
-
-volumes:
-  web-root:
-    driver: local
-    driver_opts:
-      type: none
-      device: ./docker/html/
-      o: bind
 
 networks:
   dz-network:
